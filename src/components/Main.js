@@ -1,9 +1,11 @@
 import React from "react";
+import { useSpring, animated } from "react-spring";
+import "../css/Main.css";
 
 export default function Main() {
   return (
     <>
-      <div className="container">Main Page</div>
+      <div>dfdfd</div>
     </>
   );
 }
