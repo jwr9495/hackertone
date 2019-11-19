@@ -12,7 +12,7 @@ import Header from "./components/Header";
 import Post from "./components/Post";
 
 const Page = ({ offset, caption, first, second, gradient, onClick }) => (
-  <React.Fragment>
+  <>
     <Parallax.Layer offset={offset} speed={0.2} onClick={onClick}>
       <div className="slopeBegin" />
     </Parallax.Layer>
@@ -33,7 +33,7 @@ const Page = ({ offset, caption, first, second, gradient, onClick }) => (
         <p>{second}</p>
       </span>
     </Parallax.Layer>
-  </React.Fragment>
+  </>
 );
 
 export default class App extends Component {
