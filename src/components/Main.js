@@ -5,7 +5,7 @@ import "../css/Main.css";
 export default function Main() {
   return (
     <>
-      <div>dfdfd</div>
+      <div>Stamp</div>
     </>
   );
 }

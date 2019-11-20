@@ -3,7 +3,9 @@ import { BrowserRouter, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons.cjs";
 import "./css/App.css";
+import stamp from "./css/img/stamp.png";
 
+import Main from "./components/Main";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
@@ -22,6 +24,7 @@ const Page = ({ offset, caption, first, second, gradient, onClick }) => (
     </Parallax.Layer>
 
     <Parallax.Layer className="text number" offset={offset} speed={0.3}>
+      {/* <span>0{offset + 1}</span> */}
       <span>0{offset + 1}</span>
     </Parallax.Layer>
 
@@ -44,38 +47,43 @@ export default class App extends Component {
 
   render() {
     return (
-      <Parallax
-        className="container"
-        ref={this.getRef}
-        pages={3}
-        horizontal
-        scrolling={true}
-      >
-        <Page
-          offset={0}
-          gradient="pink"
-          caption="who we are"
-          first="Lorem ipsum"
-          second="dolor sit"
-          onClick={() => this.scroll(1)}
-        />
-        <Page
-          offset={1}
-          gradient="teal"
-          caption="what we do"
-          first="consectetur"
-          second="adipiscing elit"
-          onClick={() => this.scroll(2)}
-        />
-        <Page
-          offset={2}
-          gradient="tomato"
-          caption="what we want"
-          first="Morbi quis"
-          second="est dignissim"
-          onClick={() => this.scroll(0)}
-        />
-      </Parallax>
+      <>
+        <BrowserRouter>
+          <Nav />
+          <Parallax
+            className="container"
+            ref={this.getRef}
+            pages={3}
+            horizontal
+            scrolling={true}
+          >
+            <Page
+              offset={0}
+              gradient="pink"
+              caption={<img src={stamp} />}
+              first=""
+              second=""
+              onClick={() => this.scroll(1)}
+            />
+            <Page
+              offset={1}
+              gradient="teal"
+              caption="what we do"
+              first="consectetur"
+              second="adipiscing elit"
+              onClick={() => this.scroll(2)}
+            />
+            <Page
+              offset={2}
+              gradient="tomato"
+              caption="what we want"
+              first="Morbi quis"
+              second="est dignissim"
+              onClick={() => this.scroll(0)}
+            />
+          </Parallax>
+        </BrowserRouter>
+      </>
     );
   }
 }
