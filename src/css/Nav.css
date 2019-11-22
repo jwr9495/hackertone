@@ -1,0 +1,10 @@
+.navbar {
+  background: linear-gradient(to right, royalblue 0%, palevioletred 100%);
+  color: de;
+}
+
+.nav-btn {
+  color: white;
+  background: linear-gradient(45deg, royalblue 0%, palevioletred 100%);
+  border-color: royalblue;
+}

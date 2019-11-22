@@ -1,12 +1,19 @@
 import React from "react";
+import { Link as button } from "react-router-dom";
+import "../css/Nav.css";
 
 export default function Nav() {
   return (
     <>
-      <nav>
+      <nav
+        className="navbar navbar-expand-lg navbar-light fixed-top"
+        id="mainNav"
+      >
         <div className="container">
-          <div className="navbar-brand" href="index.html">
-            Nav
+          <div id="navbarResponsive">
+            <button className="nav-btn" to="/main">
+              start!
+            </button>
           </div>
         </div>
       </nav>

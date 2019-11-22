@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons.cjs";
 import "./css/App.css";
 import stamp from "./css/img/stamp.png";
+import ad from "./css/img/ad.png";
+import walk from "./css/img/walk.png";
 
 import Main from "./components/Main";
 import Login from "./components/Login";
@@ -61,16 +63,16 @@ export default class App extends Component {
               offset={0}
               gradient="pink"
               caption={<img src={stamp} />}
-              first=""
-              second=""
+              first="Let's start STAMP!"
+              second={<img src={walk} />}
               onClick={() => this.scroll(1)}
             />
             <Page
               offset={1}
               gradient="teal"
-              caption="what we do"
-              first="consectetur"
-              second="adipiscing elit"
+              caption=""
+              first="insert your ad!"
+              second={<img src={ad} />}
               onClick={() => this.scroll(2)}
             />
             <Page
