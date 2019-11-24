@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { Tabs } from "@yazanaabed/react-tabs";
-// import { DateTimePicker } from "@progress/kendo-react-dateinputs";
+import axios from "axios";
+
 import "../css/Board.css";
+import { baseURL } from "../common/config";
 
 export default function Board(props) {
   const [title, setTitle] = useState("");
@@ -10,13 +13,28 @@ export default function Board(props) {
   const [survey, setSurvey] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-
+  const [advertiseRegister, setAdvertiseRegister] = useState(false);
   const handleSubmit = async e => {
     e.preventDefault();
+    const { data } = await axios.post(`${baseURL}/advertise/mission`, {
+      title,
+      totalNumber,
+      content,
+      survey,
+      startDate,
+      endDate
+    });
+    if (data.result) {
+      console.log(data.result);
+      setAdvertiseRegister(true);
+    } else {
+      alert("Advertise Registration is failed");
+    }
   };
 
   return (
     <>
+      {advertiseRegister && <Redirect to="/board" />}
       <h1>{props.id}님의 광고 관리 Page입니다. </h1>
       <Tabs activeTab={{ id: "tab1" }}>
         <Tabs.Tab id="tab1" title="광고 관리">
@@ -31,6 +49,16 @@ export default function Board(props) {
                 <th scope="col">광고시작일</th>
                 <th scope="col">광고마감일</th>
                 <th scope="col">관리</th>
+              </tr>
+              <tr>
+                <th scope="col">11111111</th>
+                <th scope="col">22222222</th>
+                <th scope="col">33333333</th>
+                <th scope="col">44444444</th>
+                <th scope="col">55555555</th>
+                <th scope="col">66666666</th>
+                <th scope="col">77777777</th>
+                <th scope="col">88888888</th>
               </tr>
             </thead>
           </table>
@@ -93,7 +121,7 @@ export default function Board(props) {
               <label htmlFor="startDate">Start Date</label>
               <input
                 type="datetime-local"
-                className="start-date form-control"
+                className="start-date datepicker form-control"
                 placeholder="Enter Start Date"
                 id="startDate"
                 value={startDate}
@@ -106,7 +134,7 @@ export default function Board(props) {
               <label htmlFor="endDate">End Date</label>
               <input
                 type="datetime-local"
-                className="end-date form-control"
+                className="end-date datepicker form-control"
                 placeholder="Enter End Date"
                 id="endDate"
                 value={endDate}
@@ -115,37 +143,12 @@ export default function Board(props) {
                 }}
               />
             </div>
-            {/* <div className="mb-3 form-group">
-              <label htmlFor="startDate">Date Pick</label>
-              <div className="ui-datepicker">
-                <input
-                  className="input-group input-append date"
-                  id="StartDate"
-                  placeholder="StartDate"
-                />
-              </div>
-              <div className="ui-datepicker">
-                <input
-                  className="input-group input-append date"
-                  id="endDate"
-                  placeholder="endDate"
-                />
-              </div>
-            </div> */}
-
-            {/* <DateTimePicker onChange={handleStartDate} value={startDate} />
-            <DateTimePicker onChange={handleEndDate} value={endDate} /> */}
+            <button type="submit" className="btn btn-primary btn-block">
+              Submit
+            </button>
           </form>
         </Tabs.Tab>
       </Tabs>
-
-      {/* <div className="tabs">
-        <div className="tab-list">
-          <button className="tab active">{props.id}님의 광고관리 Table</button>
-          <button className="tab">광고 등록 Form</button>
-        </div>
-        <div className="tab-progress"></div>
-      </div> */}
     </>
   );
 }
