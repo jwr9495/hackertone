@@ -7,6 +7,7 @@ import adLogo from "../css/img/ad-logo.png";
 import ticketLogo from "../css/img/Ticket-logo.png";
 
 export default function Home(props) {
+  props.setPasswordSame(false);
   const id = props.id;
   const ticket = props.ticket;
   return (

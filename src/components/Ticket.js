@@ -34,14 +34,6 @@ export default function Ticket(props) {
           <button className="ticket-btn"> (39,900원)구 매 </button>
         </article>
       </main>
-      <div className="radio-box">
-        <div>
-          <input type="radio" name="chk_info" value="계좌이체" />
-          계좌이체
-          <input type="radio" name="chk_info" value="휴대폰 결제" />
-          휴대폰 결제
-        </div>
-      </div>
     </div>
   );
 }
