@@ -1,91 +1,170 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import ReactDOM from "react-dom";
-import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons.cjs";
-import "./css/App.css";
-import stamp from "./css/img/stamp.png";
-import ad from "./css/img/ad.png";
-import walk from "./css/img/walk.png";
+// import React, { useState } from "react";
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import "./App.css";
+// import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
-import Main from "./components/Main";
-import Login from "./components/Login";
-import Home from "./components/Home";
+// import Nav from "./components/Nav";
+// import Login from "./components/Login";
+// import Join from "./components/join";
+// import Main from "./components/Main";
+// import Home from "./components/Home";
+// import User from "./components/User";
+// import Board from "./components/Board";
+// import Ticket from "./components/Ticket";
+// import stamp from "./css/img/stamp.png";
+
+// function App() {
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const [isAdmin, setIsAdmin] = useState(false);
+//   const auth = {
+//     isLoggedIn,
+//     isAdmin,
+//     setIsLoggedIn,
+//     setIsAdmin
+//   };
+//   return (
+//     <BrowserRouter>
+//       <div className="App">
+//         <Link className="navbar-brand" to={"/"}>
+//           <img src={stamp} />
+//         </Link>
+//         <Nav {...auth} />
+//         {/* <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+//           <div className="container">
+//             <ul className="navbar-nav ml-auto">
+//               <li className="nav-item">
+//                 <Link className="nav-link" to={"/login"}>
+//                   Login
+//                 </Link>
+//               </li>
+//               <li className="nav-item">
+//                 <Link className="nav-link" to={"/signup"}>
+//                   Sign up
+//                 </Link>
+//               </li>
+//             </ul>
+//             <div
+//               className="collapse navbar-collapse"
+//               id="navbarTogglerDemo02"
+//             ></div>
+//           </div>
+//         </nav> */}
+
+//         <div className="auth-wrapper">
+//           <div className="auth-inner">
+//             <Switch>
+//               <Route exact path="/" component={Main} />
+//               <Route
+//                 path="/login"
+//                 render={props => <Login {...props} {...auth} />}
+//               />
+//               <Route path="/signup" component={Join} />
+//               <Route path="/home" component={Home} />
+//               <Route path="/user" component={User} />
+//               <Route path="/board" component={Board} />
+//               <Route path="/ticket" component={Ticket} />
+//             </Switch>
+//           </div>
+//         </div>
+//       </div>
+//     </BrowserRouter>
+//   );
+// }
+
+// export default App;
+import React, { useState } from "react";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+
 import Nav from "./components/Nav";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Post from "./components/Post";
+import Login from "./components/Login";
+import Join from "./components/Join";
+import Main from "./components/Main";
+import Home from "./components/Home";
+import User from "./components/User";
+import Board from "./components/Board";
+import Ticket from "./components/Ticket";
+import stamp from "./css/img/stamp.png";
 
-const Page = ({ offset, caption, first, second, gradient, onClick }) => (
-  <>
-    <Parallax.Layer offset={offset} speed={0.2} onClick={onClick}>
-      <div className="slopeBegin" />
-    </Parallax.Layer>
-
-    <Parallax.Layer offset={offset} speed={-0.2} onClick={onClick}>
-      <div className={`slopeEnd ${gradient}`} />
-    </Parallax.Layer>
-
-    <Parallax.Layer className="text number" offset={offset} speed={0.3}>
-      {/* <span>0{offset + 1}</span> */}
-      <span>0{offset + 1}</span>
-    </Parallax.Layer>
-
-    <Parallax.Layer className="text header" offset={offset} speed={0.4}>
-      <span>
-        <p style={{ fontSize: 20 }}>{caption}</p>
-        <div className={`stripe ${gradient}`} />
-        <p>{first}</p>
-        <p>{second}</p>
-      </span>
-    </Parallax.Layer>
-  </>
-);
-
-export default class App extends Component {
-  scroll = to => this.DOMnode.scrollTo(to);
-  getRef = node => {
-    this.DOMnode = node;
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [id, setId] = useState("");
+  const [ticket, setTicket] = useState(0);
+  const [name, setName] = useState("");
+  const [company_no, setCompany_no] = useState("");
+  const [company_name, setCompany_name] = useState("");
+  const [company_location, setCompany_location] = useState("");
+  const [phonenumber, setPhonenumber] = useState("");
+  const [passwordSame, setPasswordSame] = useState(false);
+  const auth = {
+    isLoggedIn,
+    isAdmin,
+    setIsLoggedIn,
+    setIsAdmin,
+    setId,
+    id,
+    ticket,
+    setTicket,
+    name,
+    setName,
+    company_no,
+    setCompany_no,
+    company_name,
+    setCompany_name,
+    company_location,
+    setCompany_location,
+    phonenumber,
+    setPhonenumber,
+    passwordSame,
+    setPasswordSame
   };
-
-  render() {
-    return (
-      <>
-        <BrowserRouter>
-          <Nav />
-          <Parallax
-            className="container"
-            ref={this.getRef}
-            pages={3}
-            horizontal
-            scrolling={true}
-          >
-            <Page
-              offset={0}
-              gradient="pink"
-              caption={<img src={stamp} />}
-              first="Let's start STAMP!"
-              second={<img src={walk} />}
-              onClick={() => this.scroll(1)}
-            />
-            <Page
-              offset={1}
-              gradient="teal"
-              caption=""
-              first="insert your ad!"
-              second={<img src={ad} />}
-              onClick={() => this.scroll(2)}
-            />
-            <Page
-              offset={2}
-              gradient="tomato"
-              caption="what we want"
-              first="Morbi quis"
-              second="est dignissim"
-              onClick={() => this.scroll(0)}
-            />
-          </Parallax>
-        </BrowserRouter>
-      </>
-    );
-  }
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <img src={stamp} />
+        <Nav {...auth} />
+        <div className="auth-wrapper">
+          <div className="auth-inner">
+            <Switch>
+              <Route exact path="/" component={Main} />
+              {/* <Route exact path="/" component={Main} /> */}
+              <Route
+                path="/login"
+                render={props => <Login {...props} {...auth} />}
+              />
+              <Route
+                path="/signup"
+                render={props => <Join {...props} {...auth} />}
+              />
+              {/* <Route path="/signup" component={Join} /> */}
+              <Route
+                path="/home"
+                render={props => <Home {...props} {...auth} />}
+              />
+              {/* <Route path="/home" component={Home} /> */}
+              <Route
+                path="/user"
+                render={props => <User {...props} {...auth} />}
+              />
+              {/* <Route path="/user" component={User} /> */}
+              <Route
+                path="/board"
+                render={props => <Board {...props} {...auth} />}
+              />
+              {/* <Route path="/board" component={Board} /> */}
+              <Route
+                path="/ticket"
+                render={props => <Ticket {...props} {...auth} />}
+              />
+              {/* <Route path="/ticket" component={Ticket} /> */}
+            </Switch>
+          </div>
+        </div>
+      </div>
+    </BrowserRouter>
+  );
 }
+
+export default App;
