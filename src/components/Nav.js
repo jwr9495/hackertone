@@ -3,15 +3,18 @@ import { Link } from "react-router-dom";
 import getCookie from "../common/getCookie";
 
 export default function Nav({
+  setId,
   isLoggedIn,
   setIsLoggedIn,
   setIsAdmin,
-  isAdmin
+  setPasswordSame
 }) {
   const logout = () => {
     document.cookie = `Authorization=;expires=${new Date().toUTCString()}`;
+    setId("");
     setIsLoggedIn(false);
     setIsAdmin(false);
+    setPasswordSame(false);
   };
   useEffect(() => {
     setIsLoggedIn(document.cookie.includes("Authorization"));
@@ -57,7 +60,11 @@ export default function Nav({
               }}
             > */}
               {isLoggedIn ? (
-                <Link className="nav-link" to="/home">
+                <Link
+                  className="nav-link"
+                  to="/home"
+                  // onClick={setPasswordSame(false)}
+                >
                   Home
                 </Link>
               ) : (

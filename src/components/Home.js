@@ -10,6 +10,7 @@ export default function Home(props) {
   props.setPasswordSame(false);
   const id = props.id;
   const ticket = props.ticket;
+
   return (
     <div>
       <h1>{id}님 환영합니다. </h1>

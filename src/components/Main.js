@@ -41,34 +41,34 @@ export default function Main() {
     <>
       <BrowserRouter>
         <Parallax
-          className="container"
-          horizontal
-          scrolling={true}
+          className="container2"
+          horizontal={true}
+          scrolling={false}
           ref={getRef}
           pages={3}
         >
           <Page
             offset={0}
             gradient="pink"
-            caption=""
-            first="Let's start STAMP!"
+            caption="Let's start STAMP!"
+            first=""
             second={<img src={walk} />}
             onClick={() => scroll(1)}
           />
           <Page
             offset={1}
             gradient="teal"
-            caption=""
-            first="insert your ad!"
+            caption="insert your ad!"
+            first=""
             second={<img src={ad} />}
             onClick={() => scroll(2)}
           />
           <Page
             offset={2}
             gradient="tomato"
-            caption="what we want"
-            first="Morbi quis"
-            second="est dignissim"
+            caption="testing"
+            first=""
+            second=""
             onClick={() => scroll(0)}
           />
         </Parallax>
