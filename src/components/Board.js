@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Tabs } from "@yazanaabed/react-tabs";
 import axios from "axios";
-
+import Calendar from "./Calendar";
 import "../css/Board.css";
 import { baseURL } from "../common/config";
 
@@ -16,6 +16,7 @@ export default function Board(props) {
   const [advertiseRegister, setAdvertiseRegister] = useState(false);
   const handleSubmit = async e => {
     e.preventDefault();
+    console.log("hi");
     const { data } = await axios.post(`${baseURL}/advertise/mission`, {
       title,
       totalNumber,
@@ -24,6 +25,7 @@ export default function Board(props) {
       startDate,
       endDate
     });
+    console.log(data);
     if (data.result) {
       console.log(data.result);
       setAdvertiseRegister(true);
@@ -118,7 +120,13 @@ export default function Board(props) {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="startDate">Start Date</label>
+              <div className="input-example" tabIndex={0}>
+                <button type="text" className="calendar-btn" />
+                <div tabIndex={0} className="calendar-wrapper">
+                  <Calendar />
+                </div>
+              </div>
+              {/* <label htmlFor="startDate">Start Date</label>
               <input
                 type="datetime-local"
                 className="start-date datepicker form-control"
@@ -141,9 +149,13 @@ export default function Board(props) {
                 onChange={e => {
                   setEndDate(e.target.value);
                 }}
-              />
+              /> */}
             </div>
-            <button type="submit" className="btn btn-primary btn-block">
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="btn btn-primary"
+            >
               Submit
             </button>
           </form>

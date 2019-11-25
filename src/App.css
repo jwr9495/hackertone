@@ -24,3 +24,17 @@
 .logo-img {
   height: 150px;
 }
+
+.auth-inner {
+  width: 100vw;
+  height: 100vh;
+}
+
+.form-group > .form-control {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+}
